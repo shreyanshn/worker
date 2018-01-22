@@ -248,6 +248,16 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                     android:text="Amritsar "/>
             </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/family_member_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+
+            </android.support.v7.widget.RecyclerView>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
