@@ -1,0 +1,1 @@
+add dependencies: compile 'com.android.support:design:25.+'
