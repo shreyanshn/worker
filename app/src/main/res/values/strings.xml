@@ -19,5 +19,7 @@
     <string name="label_block">Block</string>
     <string name="label_district">District</string>
     <string name="label_familyid">Family Id</string>
+    <string name="label_jobcard_details">Jobcard Details</string>
+    <string name="label_family_details">Member Details</string>
 
 </resources>

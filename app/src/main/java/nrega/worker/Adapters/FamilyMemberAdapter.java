@@ -1,5 +1,6 @@
 package nrega.worker.Adapters;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,8 @@ import nrega.worker.R;
 
 public class FamilyMemberAdapter extends RecyclerView.Adapter<FamilyMemberAdapter.MyViewHolder>{
 
-    List<FamilyMember> members;
+    private List<FamilyMember> members;
+    private Context context;
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView member_name,member_dob,member_bankname;
@@ -30,8 +32,9 @@ public class FamilyMemberAdapter extends RecyclerView.Adapter<FamilyMemberAdapte
         }
     }
 
-    public FamilyMemberAdapter(List<FamilyMember> members) {
+    public FamilyMemberAdapter(List<FamilyMember> members,Context context) {
         this.members = members;
+        this.context = context;
     }
 
     @Override

@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
-        android:layout_weight="0.2">
+        android:layout_weight="0.2"
+        android:background="@color/colorAccent">
 
     </LinearLayout>
 
@@ -25,236 +25,308 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom"
+                android:layout_marginTop="@dimen/margin_top"
+                android:gravity="center"
+                android:text="@string/label_jobcard_details"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/textSizeBig" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray"/>
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
                 android:layout_marginTop="@dimen/margin_top"
-                android:layout_marginBottom="@dimen/margin_bottom"
-                android:layout_height="@dimen/tile_height"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.35"
-                    android:text="@string/label_jobcardno"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/LightBlack"
+                    android:textSize="@dimen/textSizeSmall"
+                    android:text="@string/label_jobcardno" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:layout_weight=".65"
-                    android:text="Sample Jobcard "/>
+                    android:layout_height="wrap_content"
+                    android:text="Sample Jobcard "
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/textSizeBig" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
                 android:layout_marginTop="@dimen/margin_top"
-                android:layout_marginBottom="@dimen/margin_bottom"
-                android:layout_height="@dimen/tile_height"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.35"
-                    android:text="@string/label_familyid"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/LightBlack"
+                    android:textSize="@dimen/textSizeSmall"
+                    android:text="@string/label_familyid" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:layout_weight="0.65"
-                    android:text="177 "/>
+                    android:layout_height="wrap_content"
+                    android:text="177 "
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/textSizeBig" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
                 android:layout_marginTop="@dimen/margin_top"
-                android:layout_marginBottom="@dimen/margin_bottom"
-                android:layout_height="@dimen/tile_height"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.35"
-                    android:text="@string/label_headname"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.65"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:text="Surjit Singh "/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/LightBlack"
+                    android:textSize="@dimen/textSizeSmall"
+                    android:text="@string/label_headname" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="Surjit Singh "
+                    android:textColor="@color/Black"
+
+                    android:textSize="@dimen/textSizeBig" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
                 android:layout_marginTop="@dimen/margin_top"
-                android:layout_marginBottom="@dimen/margin_bottom"
-                android:layout_height="@dimen/tile_height"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.35"
-                    android:text="@string/label_father_name"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/LightBlack"
+                    android:textSize="@dimen/textSizeSmall"
+
+                    android:text="@string/label_father_name" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.65"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:text="Santokh Singh "/>
+                    android:layout_height="wrap_content"
+
+                    android:text="Santokh Singh "
+                    android:textColor="@color/Black"
+
+                    android:textSize="@dimen/textSizeBig" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
                 android:layout_marginTop="@dimen/margin_top"
-                android:layout_marginBottom="@dimen/margin_bottom"
-                android:layout_height="@dimen/tile_height"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.35"
-                    android:text="@string/label_category"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.65"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:text="SC "/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/LightBlack"
+                    android:textSize="@dimen/textSizeSmall"
+
+                    android:text="@string/label_category" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+
+                    android:text="SC "
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/textSizeBig" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
                 android:layout_marginTop="@dimen/margin_top"
-                android:layout_marginBottom="@dimen/margin_bottom"
-                android:layout_height="@dimen/tile_height"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.35"
-                    android:text="@string/label_address"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.65"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:text=" "/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/LightBlack"
+                    android:textSize="@dimen/textSizeSmall"
+
+                    android:text="@string/label_address" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text=" "
+                    android:textColor="@color/Black"
+
+                    android:textSize="@dimen/textSizeBig" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
                 android:layout_marginTop="@dimen/margin_top"
-                android:layout_marginBottom="@dimen/margin_bottom"
-                android:layout_height="@dimen/tile_height"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.35"
-                    android:text="@string/label_village"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.65"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:text="Attari "/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/LightBlack"
+                    android:textSize="@dimen/textSizeSmall"
+
+                    android:text="@string/label_village" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="Attari "
+                    android:textColor="@color/Black"
+
+                    android:textSize="@dimen/textSizeBig" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
                 android:layout_marginTop="@dimen/margin_top"
-                android:layout_marginBottom="@dimen/margin_bottom"
-                android:layout_height="@dimen/tile_height"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.35"
-                    android:text="@string/label_panchayat"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/LightBlack"
+                    android:textSize="@dimen/textSizeSmall"
+
+                    android:text="@string/label_panchayat" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.65"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:text="Attari "/>
+                    android:layout_height="wrap_content"
+
+
+                    android:text="Attari "
+                    android:textColor="@color/Black"
+                    android:textSize="@dimen/textSizeBig" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
                 android:layout_marginTop="@dimen/margin_top"
-                android:layout_marginBottom="@dimen/margin_bottom"
-                android:layout_height="@dimen/tile_height"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.35"
-                    android:text="@string/label_block"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.65"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:text="Attari "/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/LightBlack"
+                    android:textSize="@dimen/textSizeSmall"
+
+                    android:text="@string/label_block" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="Attari "
+                    android:textColor="@color/Black"
+
+                    android:textSize="@dimen/textSizeBig" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
                 android:layout_marginTop="@dimen/margin_top"
-                android:layout_marginBottom="@dimen/margin_bottom"
-                android:layout_height="@dimen/tile_height"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.35"
-                    android:text="@string/label_district"/>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.65"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:text="Amritsar "/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/LightBlack"
+                    android:textSize="@dimen/textSizeSmall"
+
+                    android:text="@string/label_district" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:text="Amritsar "
+                    android:textColor="@color/Black"
+
+                    android:textSize="@dimen/textSizeBig" />
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom"
+                android:layout_marginTop="@dimen/margin_top"
+                android:gravity="center"
+                android:text="@string/label_family_details"
+                android:textColor="@color/Black"
+                android:textSize="@dimen/textSizeBig" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray"/>
+
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/family_member_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
-
 
             </android.support.v7.widget.RecyclerView>
 
