@@ -64,5 +64,4 @@ public class Ejobcard_fragment extends Fragment {
 
         family_member_adapter.notifyDataSetChanged();
     }
-
 }
