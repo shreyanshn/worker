@@ -1,6 +1,7 @@
 package nrega.worker;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.provider.ContactsContract;
@@ -41,7 +42,7 @@ import static nrega.worker.CameraSource.CAMERA_FACING_FRONT;
 public class CameraActivity extends AppCompatActivity {
 
     final int RequestCameraPermissionID = 1001;
-    ImageButton capture_button,refresh_button,flash_button,rotate_camera_button;
+    ImageButton capture_button,refresh_button,flash_button,rotate_camera_button,next_activity_button;
     SurfaceView cameraView;
     CameraSource cameraSource;
     EditText JobCardNo;
@@ -79,6 +80,7 @@ public class CameraActivity extends AppCompatActivity {
         flash_button = (ImageButton)findViewById(R.id.flash_button);
         rotate_camera_button = (ImageButton)findViewById(R.id.rotate_camera);
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
+        next_activity_button = (ImageButton) findViewById(R.id.next_activity);
 
         final TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
         if (!textRecognizer.isOperational()) {
@@ -145,6 +147,13 @@ public class CameraActivity extends AppCompatActivity {
             });
         }
 
+        next_activity_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CameraActivity.this,MainActivity.class);
+                startActivity(i);
+            }
+        });
 
         flash_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,7 +168,6 @@ public class CameraActivity extends AppCompatActivity {
                     cameraSource.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
                     flash_button.setBackgroundResource(R.drawable.ic_flash_on_black_24dp);
                 }
-
             }
         });
 
