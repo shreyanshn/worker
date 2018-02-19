@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="job_card">Job Card Number</string>
+    <string name="or">OR</string>
+</resources>

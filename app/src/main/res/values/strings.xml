@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">worker</string>
+    <string name="job_card">Job Card Number</string>
+    <string name="or">OR</string>
+
 
     <string name="check_status">Check Status</string>
     <string name="e_jobcard">E-JobCard</string>
