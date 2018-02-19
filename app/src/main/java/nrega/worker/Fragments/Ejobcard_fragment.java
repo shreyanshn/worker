@@ -25,7 +25,6 @@ public class Ejobcard_fragment extends Fragment {
     private RecyclerView family_member_recyclerView;
     private FamilyMemberAdapter family_member_adapter;
 
-
     public Ejobcard_fragment() {
         // Required empty public constructor
     }

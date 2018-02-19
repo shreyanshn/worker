@@ -40,6 +40,5 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:id="@+id/tv_start_date"/>
 
-
     </LinearLayout>
 </ScrollView>
