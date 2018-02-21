@@ -1,7 +1,10 @@
 package nrega.worker;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +13,9 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageButton;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -19,7 +25,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
@@ -28,14 +33,22 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static android.hardware.Camera.Parameters.FLASH_MODE_OFF;
+import static android.hardware.Camera.Parameters.FLASH_MODE_ON;
+import static android.hardware.Camera.Parameters.FLASH_MODE_TORCH;
+import static nrega.worker.CameraSource.CAMERA_FACING_BACK;
+import static nrega.worker.CameraSource.CAMERA_FACING_FRONT;
+
 public class CameraActivity extends AppCompatActivity {
 
-    ImageButton capture_button,refresh_button,flash_button,rotate_button;
+    final int RequestCameraPermissionID = 1001;
+    ImageButton capture_button,refresh_button,flash_button,rotate_camera_button,next_activity_button;
     SurfaceView cameraView;
     CameraSource cameraSource;
-    final int RequestCameraPermissionID = 1001;
     EditText JobCardNo;
     TextView jno_text,text_view;
+    private ScaleGestureDetector scaleGestureDetector;
+    private GestureDetector gestureDetector;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -64,15 +77,20 @@ public class CameraActivity extends AppCompatActivity {
         capture_button = (ImageButton) findViewById(R.id.capture_button);
         JobCardNo = (EditText) findViewById(R.id.job_card_num);
         refresh_button = (ImageButton) findViewById(R.id.refresh_button);
+        flash_button = (ImageButton)findViewById(R.id.flash_button);
+        rotate_camera_button = (ImageButton)findViewById(R.id.rotate_camera);
+        scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
+        next_activity_button = (ImageButton) findViewById(R.id.next_activity);
 
-        TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
+        final TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
         if (!textRecognizer.isOperational()) {
             Log.w("Text Recogniser:", "Unavailable yet");
         } else {
             cameraSource = new CameraSource.Builder(getApplicationContext(), textRecognizer)
-                    .setFacing(CameraSource.CAMERA_FACING_BACK)
+                    .setFacing(CAMERA_FACING_BACK)
                     .setRequestedFps(2.0f)
-                    .setAutoFocusEnabled(true)
+                    .setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)
+                    .setFlashMode(Camera.Parameters.FLASH_MODE_AUTO)
                     .build();
 
             cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
@@ -129,17 +147,41 @@ public class CameraActivity extends AppCompatActivity {
             });
         }
 
-    capture_button.setOnClickListener(new View.OnClickListener() {
+        next_activity_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CameraActivity.this,MainActivity.class);
+                startActivity(i);
+            }
+        });
 
-        @Override
-        public void onClick(View view) {
-            String jno = findJobcard(jno_text.getText().toString());
-            if(!jno.isEmpty())
-                JobCardNo.setText(jno);
-            else
-                Toast.makeText(CameraActivity.this,"Not found",Toast.LENGTH_SHORT).show();
-        }
-    });
+        flash_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String flash_mode = cameraSource.getFlashMode();
+
+                if(flash_mode!=null && flash_mode.equals("torch")){
+                    cameraSource.setFlashMode(FLASH_MODE_OFF);
+                    flash_button.setBackgroundResource(R.drawable.ic_flash_off_black_24dp);
+                }
+                else{
+                    cameraSource.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                    flash_button.setBackgroundResource(R.drawable.ic_flash_on_black_24dp);
+                }
+            }
+        });
+
+        capture_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                String jno = findJobcard(jno_text.getText().toString());
+                if(!jno.isEmpty())
+                    JobCardNo.setText(jno);
+                else
+                    Toast.makeText(CameraActivity.this,"Not found",Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         refresh_button.setOnClickListener(new View.OnClickListener() {
@@ -149,8 +191,36 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
 
-
+        rotate_camera_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(CameraActivity.this, "rotation needs to be completed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        cameraSource.setFlashMode(FLASH_MODE_OFF);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+        boolean b = scaleGestureDetector.onTouchEvent(e);
+        return b || super.onTouchEvent(e);
+    }
+
     String findJobcard(String OcrInput)
     {
         StringTokenizer Tok = new StringTokenizer(OcrInput);
@@ -170,4 +240,61 @@ public class CameraActivity extends AppCompatActivity {
         }
         return "null";
     }
+
+    private class ScaleListener implements ScaleGestureDetector.OnScaleGestureListener {
+
+        /**
+         * Responds to scaling events for a gesture in progress.
+         * Reported by pointer motion.
+         *
+         * @param detector The detector reporting the event - use this to
+         *                 retrieve extended info about event state.
+         * @return Whether or not the detector should consider this event
+         * as handled. If an event was not handled, the detector
+         * will continue to accumulate movement until an event is
+         * handled. This can be useful if an application, for example,
+         * only wants to update scaling factors if the change is
+         * greater than 0.01.
+         */
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            return false;
+        }
+
+        /**
+         * Responds to the beginning of a scaling gesture. Reported by
+         * new pointers going down.
+         *
+         * @param detector The detector reporting the event - use this to
+         *                 retrieve extended info about event state.
+         * @return Whether or not the detector should continue recognizing
+         * this gesture. For example, if a gesture is beginning
+         * with a focal point outside of a region where it makes
+         * sense, onScaleBegin() may return false to ignore the
+         * rest of the gesture.
+         */
+        @Override
+        public boolean onScaleBegin(ScaleGestureDetector detector) {
+            return true;
+        }
+
+        /**
+         * Responds to the end of a scale gesture. Reported by existing
+         * pointers going up.
+         * <p/>
+         * Once a scale has ended, {@link ScaleGestureDetector#getFocusX()}
+         * and {@link ScaleGestureDetector#getFocusY()} will return focal point
+         * of the pointers remaining on the screen.
+         *
+         * @param detector The detector reporting the event - use this to
+         *                 retrieve extended info about event state.
+         */
+        @Override
+        public void onScaleEnd(ScaleGestureDetector detector) {
+            if (cameraSource != null) {
+                cameraSource.doZoom(detector.getScaleFactor());
+            }
+        }
+    }
+
 }
