@@ -49,7 +49,9 @@ public class CameraActivity extends AppCompatActivity {
     TextView jno_text,text_view;
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
-
+/*
+* Check camera permissions and ask for permission if not allowed!
+* */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -65,7 +67,6 @@ public class CameraActivity extends AppCompatActivity {
                     }
                 }
         }
-
     }
 
     @Override
@@ -81,6 +82,10 @@ public class CameraActivity extends AppCompatActivity {
         rotate_camera_button = (ImageButton)findViewById(R.id.rotate_camera);
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
         next_activity_button = (ImageButton) findViewById(R.id.next_activity);
+
+        /*
+        * setting up text recognizer and starting camera to fetch JNO from the card
+        * */
 
         final TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
         if (!textRecognizer.isOperational()) {
@@ -147,6 +152,9 @@ public class CameraActivity extends AppCompatActivity {
             });
         }
 
+        /*
+        *
+        * */
         next_activity_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
