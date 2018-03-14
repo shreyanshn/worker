@@ -1,6 +1,7 @@
 package nrega.worker;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
@@ -25,10 +26,25 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidquery.AQuery;
+import com.androidquery.callback.AjaxCallback;
+import com.androidquery.callback.AjaxStatus;
+import com.androidquery.util.*;
+
+import nrega.worker.Constants.Constants;
+import nrega.worker.Model.JobCard;
+import nrega.worker.Utils.Utils;
+
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -49,7 +65,8 @@ public class CameraActivity extends AppCompatActivity {
     TextView jno_text,text_view;
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
-
+    Context context;
+    String url;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -72,6 +89,7 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+        url = Constants.base_url + "jobcard";
         cameraView = (SurfaceView) findViewById(R.id.surface_view_camera);
         jno_text = (TextView) findViewById(R.id.fetch_text_view);
         capture_button = (ImageButton) findViewById(R.id.capture_button);
@@ -81,7 +99,7 @@ public class CameraActivity extends AppCompatActivity {
         rotate_camera_button = (ImageButton)findViewById(R.id.rotate_camera);
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
         next_activity_button = (ImageButton) findViewById(R.id.next_activity);
-
+        context=this;
         final TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
         if (!textRecognizer.isOperational()) {
             Log.w("Text Recogniser:", "Unavailable yet");
@@ -150,8 +168,69 @@ public class CameraActivity extends AppCompatActivity {
         next_activity_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(CameraActivity.this,MainActivity.class);
-                startActivity(i);
+                AQuery aq = new AQuery(context);
+                String jobcardno = JobCardNo.getText().toString();
+                Map<String,Object> params = new HashMap<String,Object>();
+
+                try {
+                    params.put("jobcardNum", jobcardno);
+                    aq.ajax(url, params, JSONObject.class, new AjaxCallback<JSONObject>() {
+
+                        @Override
+                        public void callback(String url, JSONObject object, AjaxStatus status) {
+                            if (object != null) {
+                                try {
+                                    String key = object.getString("error");
+                                    if (key.equals("false")) {
+                                        //code here to parse the json object
+                                        String jobcardNum = object.getString("jobcardNum");
+                                        Intent i = new Intent(CameraActivity.this,MainActivity.class);
+
+                                        Utils.setSharedPreference(context,"JobCardNo",object.getString("jobcardNum"));
+                                        Utils.setSharedPreference(context,"PanchayatCode",object.getString("panchayatCode"));
+
+                                        Toast.makeText(CameraActivity.this, object.toString(), Toast.LENGTH_LONG).show();
+//error, jobcardNum, headOfHousehold, father, category, dateOfRegistration, address, village, panchayat, block, district, bpl, familyId
+                                        JobCard jobCard = new JobCard(object.getString("jobcardNum"),
+                                                object.getString("familyId"),
+                                                object.getString("headOfHousehold"),
+                                                object.getString("father"),
+                                                object.getString("category"),
+                                                object.getString("address"),
+                                                object.getString("village"),
+                                                object.getString("panchayat"),
+                                                object.getString("block"),
+                                                object.getString("district"));
+
+                                        i.putExtra("JobCard",jobCard);
+
+
+                                        startActivity(i);
+
+                                    } else {
+                                        Toast.makeText(CameraActivity.this, object.getString("message") + "object not null", Toast.LENGTH_SHORT).show();
+                                        onBackPressed();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    Toast.makeText(CameraActivity.this, "hbghvhjtvyjjb", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                if (status.getCode() == AjaxStatus.NETWORK_ERROR) {
+
+                                    Toast.makeText(CameraActivity.this, "Please Check internet Connection", Toast.LENGTH_SHORT).show();
+                                } else {
+
+                                    Toast.makeText(CameraActivity.this, status.getCode() + "zxcvbnm", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+                    Toast.makeText(CameraActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                }
+
+
             }
         });
 
