@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/spinner_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:labelFor="@string/spinner_title"
+        android:drawableRight="@drawable/down_arrow"
+        android:textColor="@color/secondaryDarkColor"
+        android:textSize="15dp"
+        android:hint="@string/spinner_title">
+
+</TextView>
