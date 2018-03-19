@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:id="@+id/check_status"
         android:icon="@mipmap/check_status"
-        android:title="@string/check_status" />
+        android:title="@string/check_status"/>
     <item
         android:id="@+id/e_jobcard"
         android:icon="@mipmap/e_jobcard"
