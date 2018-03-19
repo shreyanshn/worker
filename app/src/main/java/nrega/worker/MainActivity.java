@@ -17,6 +17,7 @@ import nrega.worker.Fragments.CheckStatusFragment;
 import nrega.worker.Fragments.DemandFragment;
 import nrega.worker.Fragments.Ejobcard_fragment;
 import nrega.worker.Model.JobCard;
+import nrega.worker.Utils.Utils;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Intent mIntent  = getIntent();
         jobCard  = (JobCard) mIntent.getParcelableExtra("JobCard");
-
+        Utils.setSharedPreference(this,"jobcardNum",jobCard.getJobCardNumber());
         toolbar=getSupportActionBar();
         BottomNavigationView navigation= (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

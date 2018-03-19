@@ -37,5 +37,4 @@ public class Utils {
         SharedPreferences settings = context.getSharedPreferences(PREFERENCE, 0);
         return settings.getString(name, "");
     }
-
 }

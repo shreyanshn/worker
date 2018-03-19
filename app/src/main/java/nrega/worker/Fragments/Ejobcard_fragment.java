@@ -43,8 +43,8 @@ public class Ejobcard_fragment extends Fragment {
     private List<FamilyMember> memberList = new ArrayList<>();
     private RecyclerView family_member_recyclerView;
     private FamilyMemberAdapter family_member_adapter;
-    private TextView jno_text,fid_text,head_text,category_text,address_text,village_text,panchayat_text,block_text,district_text;
-    private String jno,familyId,head,category,address,village,panchayat,block,district;
+    private TextView jno_text,fid_text,head_text,category_text,address_text,village_text,panchayat_text,block_text,district_text,father_text;
+    private String jno,familyId,head,category,address,village,panchayat,block,district,father;
 
     @SuppressLint("ValidFragment")
     public Ejobcard_fragment(JobCard jobCard) {
@@ -57,6 +57,7 @@ public class Ejobcard_fragment extends Fragment {
         panchayat=jobCard.getPanchayat();
         block = jobCard.getBlock();
         district = jobCard.getDistrict();
+        father = jobCard.getFather();
     }
 
 
@@ -71,8 +72,8 @@ public class Ejobcard_fragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        family_member_recyclerView = (RecyclerView)view.findViewById(R.id.family_member_recyclerView);
 
+        family_member_recyclerView = (RecyclerView)view.findViewById(R.id.family_member_recyclerView);
         family_member_adapter = new FamilyMemberAdapter(memberList,getActivity());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         family_member_recyclerView.setLayoutManager(mLayoutManager);
@@ -105,6 +106,9 @@ public class Ejobcard_fragment extends Fragment {
 
         district_text = (TextView) view.findViewById(R.id.district);
         district_text.setText(district);
+
+        father_text = (TextView) view.findViewById(R.id.father_name);
+        father_text.setText(father);
         testprepareDate();
 
     }
@@ -129,14 +133,18 @@ public class Ejobcard_fragment extends Fragment {
                             // send data to recycler view
                             JSONArray array = object.getJSONArray("workers");
                             int i = 0;
+                            FamilyMember fm;
                             while (i<array.length()){
                                 JSONObject  jsonObject = array.getJSONObject(i);
-                                FamilyMember fm = new FamilyMember(jsonObject.getString("workerName"),jsonObject.getString("age"),jsonObject.getString("Bank"));
+
+                                fm = new FamilyMember(jsonObject.getString("workerName"),jsonObject.getString("age"),jsonObject.getString("Bank"));
                                 memberList.add(fm);
+                                i++;
                             }
                             family_member_adapter.notifyDataSetChanged();
 
-                            Toast.makeText(getActivity(), object.toString(), Toast.LENGTH_SHORT).show();
+
+
 
                         } else {
 
@@ -160,7 +168,7 @@ public class Ejobcard_fragment extends Fragment {
 
 
 
-        family_member_adapter.notifyDataSetChanged();
+
     }
 
 }

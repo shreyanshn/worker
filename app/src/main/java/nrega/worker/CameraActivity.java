@@ -187,7 +187,7 @@ public class CameraActivity extends AppCompatActivity {
                                         Intent i = new Intent(CameraActivity.this,MainActivity.class);
 
                                         Utils.setSharedPreference(context,"JobCardNo",object.getString("jobcardNum"));
-                                        Utils.setSharedPreference(context,"PanchayatCode",object.getString("panchayatCode"));
+                                        Utils.setSharedPreference(context,"panchayatCode",object.getString("panchayatCode"));
 
                                         Toast.makeText(CameraActivity.this, object.toString(), Toast.LENGTH_LONG).show();
 //error, jobcardNum, headOfHousehold, father, category, dateOfRegistration, address, village, panchayat, block, district, bpl, familyId
