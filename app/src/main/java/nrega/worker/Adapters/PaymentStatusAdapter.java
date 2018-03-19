@@ -30,7 +30,9 @@ public class PaymentStatusAdapter extends RecyclerView.Adapter<PaymentStatusAdap
     }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.payment_status,parent,false);
+        if(viewType!=-1) {
+            return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.payment_status, parent, false));
+        }
         return null;
     }
 

@@ -33,7 +33,9 @@ public class ApplicationStatusAdapter extends RecyclerView.Adapter<ApplicationSt
     }
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.application_status,parent,false);
+        if (viewType!=-1) {
+            return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.application_status, parent, false));
+        }
         return null;
     }
 

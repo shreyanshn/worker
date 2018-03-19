@@ -100,8 +100,8 @@ public class CheckStatusFragment extends Fragment
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
-               // String s=parent.getItemAtPosition(position).toString();
-              //  Toast.makeText(getActivity(),s,Toast.LENGTH_LONG).show();
+                String s=parent.getItemAtPosition(position).toString();
+              Toast.makeText(getActivity(),s,Toast.LENGTH_LONG).show();
                 if (position == 1)
                 {
                     prepareApplicationStatusData();
@@ -116,14 +116,16 @@ public class CheckStatusFragment extends Fragment
             }
 
             private void prepareApplicationStatusData(){
-                ApplicationStatus appstatus=new ApplicationStatus("mohan","tilak nagar","alloted","2018-02-01","2018-02-12");
+                ApplicationStatus appstatus=new ApplicationStatus("Mohan","Tilak nagar","Alloted","2018-02-01","2018-02-12");
                 applicationStatusList.add(appstatus);
+                aSAdapter.notifyDataSetChanged();
 
             }
 
             private void preparePaymentStatusData(){
-                PaymentStatus paymentstatus=new PaymentStatus("mohan","Due","2018-02-01","2018-02-12");
+                PaymentStatus paymentstatus=new PaymentStatus("Mohan","Due","2018-02-01","2018-02-12");
                 paymentStatusList.add(paymentstatus);
+                pSAdapter.notifyDataSetChanged();
 
             }
 
