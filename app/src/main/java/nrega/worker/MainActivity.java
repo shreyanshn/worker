@@ -1,5 +1,6 @@
 package nrega.worker;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,26 +10,35 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import nrega.worker.Fragments.CheckStatusFragment;
 import nrega.worker.Fragments.DemandFragment;
 import nrega.worker.Fragments.Ejobcard_fragment;
+import nrega.worker.Model.JobCard;
+import nrega.worker.Utils.Utils;
 
 public class MainActivity extends AppCompatActivity
 {
-     private ActionBar toolbar;
+    private ActionBar toolbar;
+    JobCard jobCard;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Intent mIntent  = getIntent();
+        jobCard  = (JobCard) mIntent.getParcelableExtra("JobCard");
+        Utils.setSharedPreference(this,"jobcardNum",jobCard.getJobCardNumber());
         toolbar=getSupportActionBar();
         BottomNavigationView navigation= (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        toolbar.setTitle("E-Jobcard");
-        loadFragment(new Ejobcard_fragment());
-//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Fragment fragment = new Ejobcard_fragment(jobCard);
+        loadFragment(fragment);
+        toolbar.setTitle("E-JobCard");
+        //        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 //        transaction.replace(R.id.frame_container, new DemandFragment());
 //        transaction.addToBackStack(null);
 //        transaction.commit();
@@ -54,12 +64,12 @@ public class MainActivity extends AppCompatActivity
                     switch (item.getItemId())
                     {
                         case R.id.check_status:
-                            fragment=new CheckStatusFragment();
+                            fragment = new CheckStatusFragment();
                             loadFragment(fragment);
                             toolbar.setTitle("Check Status");
                             return true;
                         case R.id.e_jobcard:
-                            fragment = new Ejobcard_fragment();
+                            fragment = new Ejobcard_fragment(jobCard);
                             loadFragment(fragment);
                             toolbar.setTitle("E-JobCard");
                             return true;

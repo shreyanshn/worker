@@ -6,39 +6,18 @@
     tools:context="nrega.worker.Fragments.Ejobcard_fragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.2"
-        android:background="@color/colorAccent">
-
-    </LinearLayout>
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.8">
+        android:layout_height="wrap_content"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_bottom"
-                android:layout_marginTop="@dimen/margin_top"
-                android:gravity="center"
-                android:text="@string/label_jobcard_details"
-                android:textColor="@color/Black"
-                android:textSize="@dimen/textSizeBig" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@android:color/darker_gray"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,6 +37,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/e_jobcard_num"
                     android:text="Sample Jobcard "
                     android:textColor="@color/Black"
                     android:textSize="@dimen/textSizeBig" />
@@ -80,6 +60,7 @@
                     android:text="@string/label_familyid" />
 
                 <TextView
+                    android:id="@+id/family_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="177 "
@@ -104,6 +85,7 @@
                     android:text="@string/label_headname" />
 
                 <TextView
+                    android:id="@+id/head_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
@@ -134,7 +116,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:id="@+id/father_name"
                     android:text="Santokh Singh "
                     android:textColor="@color/Black"
 
@@ -159,10 +141,9 @@
                     android:text="@string/label_category" />
 
                 <TextView
+                    android:id="@+id/category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-
                     android:text="SC "
                     android:textColor="@color/Black"
                     android:textSize="@dimen/textSizeBig" />
@@ -186,6 +167,7 @@
                     android:text="@string/label_address" />
 
                 <TextView
+                    android:id="@+id/address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
@@ -213,6 +195,7 @@
                     android:text="@string/label_village" />
 
                 <TextView
+                    android:id="@+id/village"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
@@ -242,8 +225,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-
+                    android:id="@+id/panchayat"
                     android:text="Attari "
                     android:textColor="@color/Black"
                     android:textSize="@dimen/textSizeBig" />
@@ -269,7 +251,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:id="@+id/block"
                     android:text="Attari "
                     android:textColor="@color/Black"
 
@@ -294,12 +276,11 @@
                     android:text="@string/label_district" />
 
                 <TextView
+                    android:id="@+id/district"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:text="Amritsar "
                     android:textColor="@color/Black"
-
                     android:textSize="@dimen/textSizeBig" />
             </LinearLayout>
 
