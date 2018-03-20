@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import nrega.worker.Fragments.CheckStatusFragment;
 import nrega.worker.Fragments.DemandFragment;
 import nrega.worker.Fragments.Ejobcard_fragment;
 
@@ -25,8 +26,8 @@ public class MainActivity extends AppCompatActivity
         BottomNavigationView navigation= (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        toolbar.setTitle("Demand Job");
-        loadFragment(new DemandFragment());
+        toolbar.setTitle("E-Jobcard");
+        loadFragment(new Ejobcard_fragment());
 //        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 //        transaction.replace(R.id.frame_container, new DemandFragment());
 //        transaction.addToBackStack(null);
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity
                     switch (item.getItemId())
                     {
                         case R.id.check_status:
+                            fragment=new CheckStatusFragment();
+                            loadFragment(fragment);
                             toolbar.setTitle("Check Status");
                             return true;
                         case R.id.e_jobcard:

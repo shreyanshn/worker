@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?android:attr/selectableItemBackground"
-    android:layout_marginTop="120dp"
+    android:layout_marginTop="12dp"
     android:layout_marginBottom="8dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:textSize="12dp"
+        android:textSize="20sp"
         android:text="Name:"/>
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:textSize="12dp"
+        android:textSize="20sp"
         android:text="Start Date:"/>
 
     <TextView
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:textSize="12dp"
+        android:textSize="20sp"
         android:text="End Date:"/>
 
     <TextView
@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:textSize="12dp"
+        android:textSize="20sp"
         android:text="Payment Status:"/>
 
 

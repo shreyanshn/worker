@@ -10,7 +10,7 @@
     <string name="demand_job">Demand Job</string>
 
     <!-- Ejobcard Fragment Strings Used -->
-    <string name="label_jobcardno">Jobcard No</string>
+    <string name="label_jobcardno">Jobcard No:</string>
     <string name="label_headname">Name of Head Of Household</string>
     <string name="label_father_name">Name of Father/Husband</string>
     <string name="label_category">Category</string>
