@@ -62,8 +62,10 @@ public class CheckStatusFragment extends Fragment
     {
         super.onViewCreated(view,savedInstanceState);
         String[] values={"Select Status Type:","Application Status","Payment Status"};
-        Spinner spinner=(Spinner) view.findViewById(R.id.spinner);
+        final Spinner spinner=(Spinner) view.findViewById(R.id.spinner);
+
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this.getActivity(),R.layout.spinner,values){
+
 
             @Override
             public boolean isEnabled(int position) {
@@ -77,6 +79,13 @@ public class CheckStatusFragment extends Fragment
             public View getDropDownView(int position, View convertView, ViewGroup parent){
                 View v=super.getDropDownView(position,convertView,parent);
                 TextView tv=(TextView) v;
+              /*  int selected=spinner.getSelectedItemPosition();
+                if(position==selected){
+                    spinner.setBackgroundColor(Color.GREEN);
+
+                }
+                else
+                    v.setBackgroundColor(Color.WHITE);*/
                 if(position==0)
                     tv.setTextColor(Color.GRAY);
                 else
@@ -114,8 +123,12 @@ public class CheckStatusFragment extends Fragment
             {
                 //String s=parent.getItemAtPosition(position).toString();
              // Toast.makeText(getActivity(),s,Toast.LENGTH_LONG).show();
+                //((TextView) view).setTextColor(Color.GREEN);
+              //  int item = (int) parent.getItemAtPosition(position);
+                //((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorGreen));
                 if (position == 1)
                 {
+
                     payment_status_recyclerView.setVisibility(View.GONE);
                     application_status_recyclerView.setVisibility(View.VISIBLE);
                     String url = Constant.base_url + "demandDetails";
@@ -135,13 +148,13 @@ public class CheckStatusFragment extends Fragment
                                     if (key.equals("false")) {
                                         //code here to parse the json object
                                         // send data to recycler view
-                                        JSONArray array = object.getJSONArray("workers");
+                                        JSONArray array = object.getJSONArray("demands");
                                         int i = 0;
                                         ApplicationStatus as;
                                         while (i<array.length()){
                                             JSONObject  jsonObject = array.getJSONObject(i);
 
-                                            as= new ApplicationStatus(jsonObject.getString("name"),jsonObject.getString("worklocation"),jsonObject.getString("status"),jsonObject.getString("startdate"),jsonObject.getString("endate"));
+                                            as= new ApplicationStatus(jsonObject.getString("workerName"),"Tubewell",jsonObject.getString("status"),jsonObject.getString("startDate"),jsonObject.getString("endDate"));
                                             applicationStatusList.add(as);
                                             i++;
                                         }
@@ -194,13 +207,13 @@ public class CheckStatusFragment extends Fragment
                                     if (key.equals("false")) {
                                         //code here to parse the json object
                                         // send data to recycler view
-                                        JSONArray array = object.getJSONArray("workers");
+                                        JSONArray array = object.getJSONArray("works");
                                         int i = 0;
                                         PaymentStatus ps;
                                         while (i<array.length()){
                                             JSONObject  jsonObject = array.getJSONObject(i);
 
-                                            ps= new PaymentStatus(jsonObject.getString("name"),jsonObject.getString("paystatus"),jsonObject.getString("startdate"),jsonObject.getString("endate"));
+                                            ps= new PaymentStatus(jsonObject.getString("applicantNum"),jsonObject.getString("paymentDone"),jsonObject.getString("startDateOfWorker"),jsonObject.getString("endDate"));
                                             paymentStatusList.add(ps);
                                             i++;
                                         }

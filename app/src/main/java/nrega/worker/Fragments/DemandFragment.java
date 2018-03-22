@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -40,6 +41,7 @@ import java.util.Map;
 
 import nrega.worker.Adapters.NamesAdapter;
 import nrega.worker.Constants.Constants;
+import nrega.worker.DemandConfirmation;
 import nrega.worker.R;
 import nrega.worker.Utils.Utils;
 
@@ -113,6 +115,10 @@ public class DemandFragment extends Fragment {
 
                                 @Override
                                 public void callback(String url, JSONObject object, AjaxStatus status) {
+                                    Intent i = new Intent(getActivity(), DemandConfirmation.class);
+                                    i.putExtra("startDate",startDate);
+                                    i.putExtra("endDate",endDate);
+                                    startActivity(i);
 
                                     super.callback(url, object, status);
                                     if (object!=null){
