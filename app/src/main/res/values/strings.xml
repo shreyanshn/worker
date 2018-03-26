@@ -4,12 +4,10 @@
     <string name="or">OR</string>
 
 
+    <!-- Fragment Strings Used -->
     <string name="check_status">Check Status</string>
     <string name="e_jobcard">E-JobCard</string>
     <string name="demand_job">Demand Job</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Ejobcard Fragment Strings Used -->
     <string name="label_jobcardno">Jobcard No</string>
@@ -24,5 +22,21 @@
     <string name="label_familyid">Family Id</string>
     <string name="label_jobcard_details">Jobcard Details</string>
     <string name="label_family_details">Member Details</string>
+    <string name="people_willing_to_work">Names</string>
+    <string name="start_date">Start Date</string>
+    <string name="next_page">Continue</string>
+
+    <!-- Check Status Fragment Strings Used -->
+    <string name="spinner_title">Select Category</string>
+
+    <!-- Demand Confirmation Strings Used -->
+    <string name="demand_confirmed">Demand Confirmed</string>
+    <string name="demand_name">Name:</string>
+    <string name="demand_familyid">Family Id:</string>
+    <string name="demand_category">Category:</string>
+    <string name="demand_address">Address:</string>
+    <string name="demand_startdate">Start Date:</string>
+    <string name="demand_enddate">End Date:</string>
+    <string name="demand_confirmation">Demand Confirmation:</string>
 
 </resources>

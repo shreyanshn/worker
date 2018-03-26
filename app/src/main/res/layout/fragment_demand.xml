@@ -1,15 +1,152 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:weightSum="10"
     tools:context="nrega.worker.Fragments.DemandFragment">
-
-
-
-
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-</FrameLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:id="@+id/question"
+                android:layout_centerHorizontal="true"
+                android:text="@string/people_willing_to_work"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyler_names"
+                android:layout_below="@+id/question"/>
+
+
+            <TextView
+                android:id="@+id/date_heading"
+                android:layout_width="match_parent"                android:layout_height="wrap_content"
+                android:text="@string/start_date"
+                android:layout_below="@+id/recyler_names"
+                android:layout_margin="20dp"
+                android:textSize="20sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/picker_from"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/date_heading"
+                android:weightSum="10">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="From:"
+                    android:id="@+id/from"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="20sp"
+                    android:layout_weight="3"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/yy"
+                    android:text=""
+                    android:id="@+id/from_date"
+                    android:textStyle="bold"
+                    android:gravity="center"
+
+                    android:textSize="20sp"
+                    android:layout_weight="5" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:id="@+id/btn_set_date"
+                    android:background="@drawable/ic_date_range_black_24dp"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="0"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/picker_till"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/picker_from"
+                android:weightSum="10">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Till :"
+                    android:id="@+id/till"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="20sp"
+                    android:layout_weight="3"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="dd/mm/yy"
+                    android:text=""
+                    android:id="@+id/till_date"
+                    android:textStyle="bold"
+                    android:gravity="center"
+
+                    android:textSize="20sp"
+                    android:layout_weight="5"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="5dp"
+                    android:paddingLeft="5dp"
+                    android:id="@+id/btn_set_date_2"
+                    android:background="@drawable/ic_date_range_black_24dp"
+                    android:layout_marginLeft="20dp"
+
+                    />
+
+
+            </LinearLayout>
+
+            <android.support.v7.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_below="@id/picker_till"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:id="@+id/confirm_demand"
+                android:text="@string/next_page"
+
+                android:layout_weight="1" />
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -2,4 +2,5 @@
 <resources>
     <string name="job_card">Job Card Number</string>
     <string name="or">OR</string>
+    <string name="people_willing_to_work">Names</string>
 </resources>
