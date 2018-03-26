@@ -8,6 +8,7 @@ import android.hardware.Camera;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
@@ -15,6 +16,7 @@ import android.support.v7.widget.AppCompatImageButton;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.SurfaceHolder;
@@ -192,7 +194,7 @@ public class CameraActivity extends AppCompatActivity {
                                         Utils.setSharedPreference(context,"familyId",object.getString("familyId"));
                                         Toast.makeText(CameraActivity.this, object.toString(), Toast.LENGTH_LONG).show();
 //error, jobcardNum, headOfHousehold, father, category, dateOfRegistration, address, village, panchayat, block, district, bpl, familyId
-                                        JobCard jobCard = new JobCard(object.getString("jobcardNum"),
+                                        final JobCard jobCard = new JobCard(object.getString("jobcardNum"),
                                                 object.getString("familyId"),
                                                 object.getString("headOfHousehold"),
                                                 object.getString("father"),
@@ -203,10 +205,43 @@ public class CameraActivity extends AppCompatActivity {
                                                 object.getString("block"),
                                                 object.getString("district"));
 
-                                        i.putExtra("JobCard",jobCard);
 
 
-                                        startActivity(i);
+                                        AlertDialog.Builder pinAuth = new AlertDialog.Builder(context);
+                                        LayoutInflater inflater = LayoutInflater.from(context);
+                                        View view = inflater.inflate(R.layout.dialog_pin, null);
+
+                                        pinAuth.setTitle("PIN required.");
+//                pinAuth.setCancelable(false);
+                                        pinAuth.setView(view);
+
+                                        final EditText pin = (EditText) view.findViewById(R.id.pin_edit_text);
+                                        //pin.setInputType(InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+
+                                        final AlertDialog alertDialog = pinAuth.create();
+                                        alertDialog.show();
+
+                                        Button ok_button = (Button) view.findViewById(R.id.ok_button);
+                                        ok_button.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+
+                                                if(pin.getText().toString().equals("1234"))
+                                                {
+                                                    alertDialog.cancel();
+                                                    Intent i = new Intent(CameraActivity.this,MainActivity.class);
+                                                    i.putExtra("JobCard",jobCard);
+
+                                                    startActivity(i);
+                                                }
+                                                else
+                                                {
+                                                    alertDialog.cancel();
+                                                    Toast.makeText(CameraActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
+                                                }
+
+                                            }
+                                        });
 
                                     } else {
                                         Toast.makeText(CameraActivity.this, object.getString("message") + "object not null", Toast.LENGTH_SHORT).show();
