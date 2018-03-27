@@ -37,11 +37,7 @@ public class MainActivity extends AppCompatActivity
 
         Fragment fragment = new Ejobcard_fragment(jobCard);
         loadFragment(fragment);
-        toolbar.setTitle("E-JobCard");
-        //        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//        transaction.replace(R.id.frame_container, new DemandFragment());
-//        transaction.addToBackStack(null);
-//        transaction.commit();
+        toolbar.setTitle(R.string.e_jobcard);
     }
 
 
@@ -66,17 +62,17 @@ public class MainActivity extends AppCompatActivity
                         case R.id.check_status:
                             fragment = new CheckStatusFragment();
                             loadFragment(fragment);
-                            toolbar.setTitle("Check Status");
+                            toolbar.setTitle(R.string.check_status);
                             return true;
                         case R.id.e_jobcard:
                             fragment = new Ejobcard_fragment(jobCard);
                             loadFragment(fragment);
-                            toolbar.setTitle("E-JobCard");
+                            toolbar.setTitle(R.string.e_jobcard);
                             return true;
                         case R.id.demand_job:
                             fragment = new DemandFragment();
                             loadFragment(fragment);
-                            toolbar.setTitle("Demand JoB");
+                            toolbar.setTitle(R.string.demand_job);
                             return true;
                     }
                     return false;

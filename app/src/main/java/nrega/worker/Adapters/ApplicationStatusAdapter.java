@@ -1,6 +1,9 @@
 package nrega.worker.Adapters;
 
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ public class ApplicationStatusAdapter extends RecyclerView.Adapter<ApplicationSt
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView name,worklocation,status,startdate,endate;
+        CardView cv;
 
         public MyViewHolder(View view){
             super(view);
@@ -25,6 +29,8 @@ public class ApplicationStatusAdapter extends RecyclerView.Adapter<ApplicationSt
             status=(TextView)view.findViewById(R.id.astatus);
             startdate=(TextView)view.findViewById(R.id.astatus_startdate);
             endate=(TextView)view.findViewById(R.id.astatus_enddate);
+            cv = (CardView) view.findViewById(R.id.application_status_cardView);
+
         }
     }
     public ApplicationStatusAdapter(List<ApplicationStatus> applicationStatusList)
@@ -47,6 +53,14 @@ public class ApplicationStatusAdapter extends RecyclerView.Adapter<ApplicationSt
         holder.startdate.setText((CharSequence) applicationStatus.getStartdate());
         holder.endate.setText((CharSequence) applicationStatus.getEnddate());
         holder.status.setText(applicationStatus.getStatus());
+
+        Log.d("status",applicationStatus.getStatus());
+        if(applicationStatus.getStatus().equals("Alloted"))
+            holder.cv.setBackgroundColor(Color.parseColor("#58EF61"));
+        else if (applicationStatus.getStatus().equals("pending"))
+            holder.cv.setBackgroundColor(Color.parseColor("#CC0000"));
+
+
     }
 
     @Override

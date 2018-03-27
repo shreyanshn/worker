@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +70,7 @@ public class CameraActivity extends AppCompatActivity {
     private GestureDetector gestureDetector;
     Context context;
     String url;
+    ProgressBar markerProgress;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -92,6 +94,7 @@ public class CameraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         url = Constants.base_url + "jobcard";
+        markerProgress = (ProgressBar) findViewById(R.id.marker_progress);
         cameraView = (SurfaceView) findViewById(R.id.surface_view_camera);
         jno_text = (TextView) findViewById(R.id.fetch_text_view);
         capture_button = (ImageButton) findViewById(R.id.capture_button);
@@ -170,6 +173,8 @@ public class CameraActivity extends AppCompatActivity {
         next_activity_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                markerProgress.setVisibility(View.VISIBLE);
                 AQuery aq = new AQuery(context);
                 String jobcardno = JobCardNo.getText().toString();
                 Map<String,Object> params = new HashMap<String,Object>();
@@ -182,8 +187,9 @@ public class CameraActivity extends AppCompatActivity {
                         public void callback(String url, JSONObject object, AjaxStatus status) {
                             if (object != null) {
                                 try {
+                                    markerProgress.setVisibility(View.INVISIBLE);
                                     String key = object.getString("error");
-                                    if (key.equals("false")) {
+                                    if (key.equals("false") && object.getString("jobcardNum")!=null) {
                                         //code here to parse the json object
                                         String jobcardNum = object.getString("jobcardNum");
                                         Intent i = new Intent(CameraActivity.this,MainActivity.class);
@@ -192,6 +198,7 @@ public class CameraActivity extends AppCompatActivity {
                                         Utils.setSharedPreference(context,"panchayatCode",object.getString("panchayatCode"));
                                         Utils.setSharedPreference(context,"address",object.getString("address"));
                                         Utils.setSharedPreference(context,"familyId",object.getString("familyId"));
+                                        Utils.setSharedPreference(context,"category",object.getString("category"));
                                         Toast.makeText(CameraActivity.this, object.toString(), Toast.LENGTH_LONG).show();
 //error, jobcardNum, headOfHousehold, father, category, dateOfRegistration, address, village, panchayat, block, district, bpl, familyId
                                         final JobCard jobCard = new JobCard(object.getString("jobcardNum"),
@@ -252,6 +259,7 @@ public class CameraActivity extends AppCompatActivity {
                                     Toast.makeText(CameraActivity.this, "hbghvhjtvyjjb", Toast.LENGTH_SHORT).show();
                                 }
                             } else {
+                                markerProgress.setVisibility(View.INVISIBLE);
                                 if (status.getCode() == AjaxStatus.NETWORK_ERROR) {
 
                                     Toast.makeText(CameraActivity.this, "Please Check internet Connection", Toast.LENGTH_SHORT).show();
@@ -266,6 +274,7 @@ public class CameraActivity extends AppCompatActivity {
                     Toast.makeText(CameraActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
 
+//                markerProgress.setVisibility(View.INVISIBLE);
 
             }
         });

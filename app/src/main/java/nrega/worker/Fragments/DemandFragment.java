@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,7 +77,7 @@ public class DemandFragment extends Fragment {
     String startDate,endDate;
     CalendarView calendarView;
     Calendar myCalendar,myCalendar2;
-
+    ProgressBar markerProgress;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -91,6 +92,8 @@ public class DemandFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        markerProgress = (ProgressBar) view.findViewById(R.id.marker_progress_demand);
+
         next = (Button) getView().findViewById(R.id.confirm_demand);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +109,7 @@ public class DemandFragment extends Fragment {
                             obj.put("endDate",endDate);
                             obj.put("applicantNum",i+1);
 //                            Toast.makeText(appContext, obj.toString(), Toast.LENGTH_SHORT).show();
-
+                            markerProgress.setVisibility(View.VISIBLE);
                             AQuery aQuery = new AQuery(appContext);
 
                             obj.put("jobcardNum",jobcardNum);
@@ -115,29 +118,33 @@ public class DemandFragment extends Fragment {
 
                                 @Override
                                 public void callback(String url, JSONObject object, AjaxStatus status) {
-                                    Intent i = new Intent(getActivity(), DemandConfirmation.class);
-                                    i.putExtra("startDate",startDate);
-                                    i.putExtra("endDate",endDate);
-                                    startActivity(i);
+
 
                                     super.callback(url, object, status);
                                     if (object!=null){
+                                        markerProgress.setVisibility(View.INVISIBLE);
                                         Toast.makeText(getActivity(), object.toString(), Toast.LENGTH_SHORT).show();
                                         /////////complete job demand//////////
                                         //       Toast.makeText(NamesActivity.this, object.toString(), Toast.LENGTH_SHORT).show();
                                         try {
                                             String key = object.getString("error");
                                             if(key.equals("false")) {
-
-                                                Toast.makeText(getActivity(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                                                String demandId = object.getString("demandId");
+                                                Intent i = new Intent(getActivity(), DemandConfirmation.class);
+                                                i.putExtra("demandId",demandId);
+                                                i.putExtra("startDate",startDate);
+                                                i.putExtra("endDate",endDate);
+                                                startActivity(i);
+                                                Toast.makeText(getActivity(), object.getString("demandId"), Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                         catch (JSONException e) {
                                             e.printStackTrace();
-                                            Toast.makeText(getActivity(), "json exception", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getActivity(), "Demand Already Exists", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                     else {
+                                        markerProgress.setVisibility(View.INVISIBLE);
                                         if (status.getCode() == AjaxStatus.NETWORK_ERROR) {
                                             Toast.makeText(getActivity(), "Please Check internet Connection", Toast.LENGTH_SHORT).show();
                                         } else {

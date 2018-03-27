@@ -3,4 +3,7 @@
     <string name="job_card">Job Card Number</string>
     <string name="or">OR</string>
     <string name="people_willing_to_work">Names</string>
+    <string name="application_status">Application Status</string>
+    <string name="payment_status">Payment Status</string>
+    <string name="demand_ID">Demand ID</string>
 </resources>

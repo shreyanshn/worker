@@ -61,7 +61,7 @@ public class CheckStatusFragment extends Fragment
     public void onViewCreated(View view,Bundle savedInstanceState)
     {
         super.onViewCreated(view,savedInstanceState);
-        String[] values={"Select Status Type:","Application Status","Payment Status"};
+        String[] values={"Select Status Type:",getString(R.string.application_status),getString(R.string.payment_status)};
         final Spinner spinner=(Spinner) view.findViewById(R.id.spinner);
 
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(this.getActivity(),R.layout.spinner,values){

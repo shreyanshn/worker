@@ -149,4 +149,14 @@
 
     </ScrollView>
 
+    <ProgressBar android:indeterminate="true"
+        android:layout_width="50dp" android:layout_height="50dp"
+        android:id="@+id/marker_progress_demand"
+        style="?android:attr/progressBarStyle"
+        android:visibility="invisible"
+        android:foregroundGravity="center_horizontal"
+        android:background="@null"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

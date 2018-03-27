@@ -38,5 +38,8 @@
     <string name="demand_startdate">Start Date:</string>
     <string name="demand_enddate">End Date:</string>
     <string name="demand_confirmation">Demand Confirmation:</string>
+    <string name="application_status">Application Status</string>
+    <string name="payment_status">Payment Status</string>
+    <string name="demand_ID">Demand ID</string>
 
 </resources>

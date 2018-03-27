@@ -35,9 +35,9 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/job_card"
                     android:maxLines="1"
-                    android:textSize="20sp"
                     android:singleLine="true"
-                    />
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp" />
 
 
             </android.support.design.widget.TextInputLayout>
@@ -117,6 +117,15 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginRight="8dp"/>
 
+            <ProgressBar android:indeterminate="true"
+                android:layout_width="50dp" android:layout_height="50dp"
+                android:id="@+id/marker_progress"
+                style="?android:attr/progressBarStyle"
+                android:visibility="invisible"
+                android:foregroundGravity="center_horizontal"
+                android:background="@null"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </RelativeLayout>
 
@@ -134,5 +143,6 @@
         android:textSize="15dp"
         android:background="@drawable/round_edittext"
         android:layout_centerHorizontal="true" />
+
 
 </android.support.design.widget.CoordinatorLayout>

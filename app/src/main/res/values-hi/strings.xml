@@ -22,12 +22,17 @@
     <string name="label_familyid">परिवार आईडी</string>
     <string name="label_jobcard_details">जॉबकार्ड विवरण</string>
     <string name="label_family_details">सदस्य विवरण</string>
+
+    <!-- Demand Fragment Strings Used -->
     <string name="people_willing_to_work">नाम</string>
     <string name="start_date">आरंभ करने की तिथि</string>
-    <string name="next_page">जारी रहना</string>
+    <string name="next_page">मांग की पुष्टि करें</string>
 
     <!-- Check Status Fragment Strings Used -->
     <string name="spinner_title">श्रेणी का चयन करें</string>
+    <string name="application_status">आवेदन की स्थिति</string>
+    <string name="payment_status">अदा की गई राशि</string>
+
 
     <!-- Demand Confirmation Strings Used -->
     <string name="demand_confirmed">मांग की पुष्टि</string>
@@ -38,5 +43,6 @@
     <string name="demand_startdate">आरंभ करने की तिथि:</string>
     <string name="demand_enddate">अंतिम तिथि:</string>
     <string name="demand_confirmation">मांग की पुष्टि:</string>
+    <string name="demand_ID">Demand ID</string>
 
 </resources>
