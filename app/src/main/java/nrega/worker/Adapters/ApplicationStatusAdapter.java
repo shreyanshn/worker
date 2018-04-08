@@ -55,10 +55,10 @@ public class ApplicationStatusAdapter extends RecyclerView.Adapter<ApplicationSt
         holder.status.setText(applicationStatus.getStatus());
 
         Log.d("status",applicationStatus.getStatus());
-        if(applicationStatus.getStatus().equals("Alloted"))
-            holder.status.setBackgroundColor(Color.parseColor("#58EF61"));
+        if(applicationStatus.getStatus().equals("alloted"))
+            holder.status.setTextColor(Color.parseColor("#58EF61"));
         else if (applicationStatus.getStatus().equals("pending"))
-            holder.status.setBackgroundColor(Color.parseColor("#CC0000"));
+            holder.status.setTextColor(Color.parseColor("#CC0000"));
 
 
     }
