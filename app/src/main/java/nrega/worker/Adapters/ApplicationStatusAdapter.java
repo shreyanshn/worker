@@ -30,7 +30,6 @@ public class ApplicationStatusAdapter extends RecyclerView.Adapter<ApplicationSt
             startdate=(TextView)view.findViewById(R.id.astatus_startdate);
             endate=(TextView)view.findViewById(R.id.astatus_enddate);
             cv = (CardView) view.findViewById(R.id.application_status_cardView);
-
         }
     }
     public ApplicationStatusAdapter(List<ApplicationStatus> applicationStatusList)

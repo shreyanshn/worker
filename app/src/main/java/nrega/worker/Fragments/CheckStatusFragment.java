@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ import nrega.worker.Constant.Constant;
 import nrega.worker.Model.ApplicationStatus;
 import nrega.worker.Model.PaymentStatus;
 import nrega.worker.R;
+import nrega.worker.Utils.Utils;
 
 
 public class CheckStatusFragment extends Fragment
@@ -45,7 +47,7 @@ public class CheckStatusFragment extends Fragment
     private RecyclerView application_status_recyclerView,payment_status_recyclerView;
     private ApplicationStatusAdapter aSAdapter;
     private PaymentStatusAdapter pSAdapter;
-
+    ProgressBar markerProgress;
 
     public CheckStatusFragment()
     {
@@ -121,6 +123,8 @@ public class CheckStatusFragment extends Fragment
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
+                markerProgress = (ProgressBar) getView().findViewById(R.id.progress_check_status);
+
                 //String s=parent.getItemAtPosition(position).toString();
              // Toast.makeText(getActivity(),s,Toast.LENGTH_LONG).show();
                 //((TextView) view).setTextColor(Color.GREEN);
@@ -128,15 +132,19 @@ public class CheckStatusFragment extends Fragment
                 //((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.colorGreen));
                 if (position == 1)
                 {
+                    markerProgress.setVisibility(View.VISIBLE);
+
 
                     payment_status_recyclerView.setVisibility(View.GONE);
                     application_status_recyclerView.setVisibility(View.VISIBLE);
                     String url = Constant.base_url + "demandDetails";
                     Context context = getContext();
                     AQuery aq = new AQuery(context);
+                    String jobcardNum = Utils.getSharedPreferences(context,"jobcardNum");
+
                     Map<String,Object> params = new HashMap<String,Object>();
 
-                    params.put("jobcardNum","PB02002002001/184");
+                    params.put("jobcardNum",jobcardNum);
                     aq.ajax(url,params, JSONObject.class,new AjaxCallback<JSONObject>(){
                         @Override
                         public void callback(String url, JSONObject object, AjaxStatus status) {
@@ -144,6 +152,7 @@ public class CheckStatusFragment extends Fragment
                             if (object != null) {
 
                                 try {
+                                    markerProgress.setVisibility(View.INVISIBLE);
                                     String key = object.getString("error");
                                     if (key.equals("false")) {
                                         //code here to parse the json object
@@ -189,13 +198,15 @@ public class CheckStatusFragment extends Fragment
                 {
                    application_status_recyclerView.setVisibility(View.GONE);
                     payment_status_recyclerView.setVisibility(View.VISIBLE);
+                    markerProgress.setVisibility(View.VISIBLE);
 
-                //    PaymentStatus paymentstatus=new PaymentStatus("Mohan","Due","2018-02-01","2018-02-12");
+                    //    PaymentStatus paymentstatus=new PaymentStatus("Mohan","Due","2018-02-01","2018-02-12");
                     String url = Constant.base_url + "previousJobDetails";
                     Context context = getContext();
                     AQuery aq = new AQuery(context);
+                    String jobcardNum = Utils.getSharedPreferences(context,"jobcardNum");
                     Map<String,Object> params = new HashMap<String,Object>();
-                    params.put("jobcardNum","PB02002002001/184");
+                    params.put("jobcardNum",jobcardNum);
                     aq.ajax(url,params, JSONObject.class,new AjaxCallback<JSONObject>(){
                         @Override
                         public void callback(String url, JSONObject object, AjaxStatus status) {
@@ -203,6 +214,8 @@ public class CheckStatusFragment extends Fragment
                             if (object != null) {
 
                                 try {
+                                    markerProgress.setVisibility(View.INVISIBLE);
+
                                     String key = object.getString("error");
                                     if (key.equals("false")) {
                                         //code here to parse the json object

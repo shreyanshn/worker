@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,8 +44,11 @@ public class Ejobcard_fragment extends Fragment {
     private List<FamilyMember> memberList = new ArrayList<>();
     private RecyclerView family_member_recyclerView;
     private FamilyMemberAdapter family_member_adapter;
-    private TextView jno_text,fid_text,head_text,category_text,address_text,village_text,panchayat_text,block_text,district_text,father_text;
+    private TextView jno_text,fid_text,head_text,category_text,address_text,village_text,panchayat_text,block_text,district_text,father_text,text_days_left;
     private String jno,familyId,head,category,address,village,panchayat,block,district,father;
+    private int daysLeft;
+    ProgressBar markerProgress;
+
 
     @SuppressLint("ValidFragment")
     public Ejobcard_fragment(JobCard jobCard) {
@@ -58,6 +62,7 @@ public class Ejobcard_fragment extends Fragment {
         block = jobCard.getBlock();
         district = jobCard.getDistrict();
         father = jobCard.getFather();
+        daysLeft = jobCard.getDaysLeft();
     }
 
 
@@ -109,12 +114,17 @@ public class Ejobcard_fragment extends Fragment {
 
         father_text = (TextView) view.findViewById(R.id.father_name);
         father_text.setText(father);
+
+        text_days_left = (TextView) view.findViewById(R.id.days_left);
+        text_days_left.setText(""+daysLeft);
+
         testprepareDate();
 
     }
 
     private void testprepareDate() {
-
+        markerProgress = (ProgressBar) getView().findViewById(R.id.marker_progress_jobcard);
+        markerProgress.setVisibility(View.VISIBLE);
         String url = Constants.base_url + "members";
         Context context = getContext();
         AQuery aq = new AQuery(context);
@@ -127,6 +137,7 @@ public class Ejobcard_fragment extends Fragment {
                 if (object != null) {
 
                     try {
+                        markerProgress.setVisibility(View.INVISIBLE);
                         String key = object.getString("error");
                         if (key.equals("false")) {
                             //code here to parse the json object

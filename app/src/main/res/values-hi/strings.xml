@@ -44,5 +44,6 @@
     <string name="demand_enddate">अंतिम तिथि:</string>
     <string name="demand_confirmation">मांग की पुष्टि:</string>
     <string name="demand_ID">Demand ID</string>
+    <string name="label_days_left">Days Left</string>
 
 </resources>

@@ -18,8 +18,9 @@ public class JobCard implements Parcelable{
     private String Panchayat;
     private String Block;
     private String District;
+    private int daysLeft;
 
-    public JobCard(String jobCardNumber, String familyId, String head, String father, String category, String address, String village, String panchayat, String block, String district) {
+    public JobCard(String jobCardNumber, String familyId, String head, String father, String category, String address, String village, String panchayat, String block, String district,int daysLeft) {
         JobCardNumber = jobCardNumber;
         FamilyId = familyId;
         Head = head;
@@ -30,6 +31,7 @@ public class JobCard implements Parcelable{
         Panchayat = panchayat;
         Block = block;
         District = district;
+        this.daysLeft = daysLeft;
     }
 
     protected JobCard(Parcel in) {
@@ -43,6 +45,7 @@ public class JobCard implements Parcelable{
         Panchayat = in.readString();
         Block = in.readString();
         District = in.readString();
+        daysLeft = in.readInt();
     }
 
     public static final Creator<JobCard> CREATOR = new Creator<JobCard>() {
@@ -137,6 +140,14 @@ public class JobCard implements Parcelable{
         District = district;
     }
 
+    public int getDaysLeft() {
+        return daysLeft;
+    }
+
+    public void setDaysLeft(int daysLeft) {
+        this.daysLeft = daysLeft;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -154,5 +165,6 @@ public class JobCard implements Parcelable{
         dest.writeString(Panchayat);
         dest.writeString(Block);
         dest.writeString(District);
+        dest.writeInt(daysLeft);
     }
 }

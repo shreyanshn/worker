@@ -6,4 +6,5 @@
     <string name="application_status">Application Status</string>
     <string name="payment_status">Payment Status</string>
     <string name="demand_ID">Demand ID</string>
+    <string name="label_days_left">Days Left</string>
 </resources>

@@ -199,8 +199,10 @@ public class CameraActivity extends AppCompatActivity {
                                         Utils.setSharedPreference(context,"address",object.getString("address"));
                                         Utils.setSharedPreference(context,"familyId",object.getString("familyId"));
                                         Utils.setSharedPreference(context,"category",object.getString("category"));
+                                        Utils.setSharedPreference(context,"daysLeft",object.getString("daysLeft"));
                                         Toast.makeText(CameraActivity.this, object.toString(), Toast.LENGTH_LONG).show();
 //error, jobcardNum, headOfHousehold, father, category, dateOfRegistration, address, village, panchayat, block, district, bpl, familyId
+
                                         final JobCard jobCard = new JobCard(object.getString("jobcardNum"),
                                                 object.getString("familyId"),
                                                 object.getString("headOfHousehold"),
@@ -210,7 +212,8 @@ public class CameraActivity extends AppCompatActivity {
                                                 object.getString("village"),
                                                 object.getString("panchayat"),
                                                 object.getString("block"),
-                                                object.getString("district"));
+                                                object.getString("district"),
+                                                object.getInt("daysLeft"));
 
 
 

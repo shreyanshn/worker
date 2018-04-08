@@ -225,6 +225,7 @@ public class DemandFragment extends Fragment {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
         tvDisplayDate = (TextView) getView().findViewById(R.id.from_date);
         tvDisplayDate.setText(sdf.format(myCalendar.getTime()));
+
         Toast.makeText(appContext, sdf.format(myCalendar.getTime()), Toast.LENGTH_SHORT).show();
         startDate = tvDisplayDate.getText().toString();
     }
@@ -251,6 +252,8 @@ public class DemandFragment extends Fragment {
     }
 
     private void confirmApi() {
+        markerProgress.setVisibility(View.VISIBLE);
+
         AQuery aq;
         isLoading=false;
         String url = Constants.base_url +"members";
@@ -268,6 +271,8 @@ public class DemandFragment extends Fragment {
                     /////////send data to recycler view here//////////
                     Toast.makeText(getActivity(), object.toString(), Toast.LENGTH_SHORT).show();
                     try {
+                        markerProgress.setVisibility(View.INVISIBLE);
+
                         String key = object.getString("error");
                         if(key.equals("false")) {
                             JSONArray array = object.getJSONArray("workers");

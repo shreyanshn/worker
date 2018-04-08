@@ -36,6 +36,15 @@
         android:scrollbars="vertical">
     </android.support.v7.widget.RecyclerView>
 
+    <ProgressBar android:indeterminate="true"
+        android:layout_width="50dp" android:layout_height="50dp"
+        android:id="@+id/progress_check_status"
+        style="?android:attr/progressBarStyle"
+        android:visibility="invisible"
+        android:foregroundGravity="center_horizontal"
+        android:background="@null"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
